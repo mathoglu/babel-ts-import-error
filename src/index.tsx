@@ -6,4 +6,4 @@ import Modal from 'react-modal';
 
 console.log(Modal);
 
-ReactDom.render(<Modal isOpen={true}></Modal>, document.getElementById("app"));
+ReactDom.render(<Modal isOpen={true}><h1>This works!</h1></Modal>, document.getElementById("app"));

@@ -10,24 +10,27 @@ module.exports = {
     index: path.join(srcPath, 'index.tsx'),
   },
   output: {
-    path: distPath, // output entry to ./dist
-    filename: "index.[name].js", //[name] is a chunk name from entry object properties
+    path: distPath,
+    filename: "index.[name].js",
     pathInfo: true,
     publicPath: ''
   },
   module: {
     loaders: [
-      // {
-      //   test: /\.tsx?$/,
-      //   loaders: ['babel', 'ts-loader'],
-      //   babelrc: true,
-      //   include: srcPath
-      // },
+      // Normal loader
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
-        useBabel: true
+        loaders: ['babel', 'ts-loader'],
+        babelrc: true,
+        include: srcPath
       }
+
+      // Awesome loader
+      // {
+      //   test: /\.tsx?$/,
+      //   loader: 'awesome-typescript-loader',
+      //   useBabel: true
+      // }
     ]
   },
   plugins: [
@@ -39,12 +42,9 @@ module.exports = {
     root: srcPath,
     extensions: ['','.js', 'ts', 'tsx', '.jsx', '.scss'],
     modulesDirectories: ['node_modules']
-    // More: http://webpack.github.io/docs/configuration.html#resolve-modulesdirectories
   },
-
-  // Dev Server option is used to configure WebpackDevServer
   devServer: {
-    contentBase: './dist', //content will be served from ./dist
+    contentBase: './dist',
     stats: {
       colors: true
     }
